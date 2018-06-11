@@ -7,3 +7,8 @@ def test2(c,d):
     print(c*d)
 
 test2(1,3)
+
+def test3(e,f):
+    print(e-f)
+    
+test3(4,2)
