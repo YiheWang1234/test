@@ -12,3 +12,8 @@ def test3(e,f):
     print(e-f)
     
 test3(4,2)
+
+def test4():
+    print("test brunch")
+
+test4()
