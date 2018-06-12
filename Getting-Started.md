@@ -1,8 +1,11 @@
-#[Getting-Started](https://roarfrontend-dev.azurewebsites.net/)
+# [Getting-Started](https://roarfrontend-dev.azurewebsites.net/)
 
 ## Desktop login
   * New employees need set up the desktop password for the first time by clicking on the password assistance link.
   * Able to log into the desktop on the third day.
+  * Able to check Payroll, Benefits and Health information in web browser.
+  * Able to communicate with your colleagues by Skype.
+  * Able to check JPMC email by Outlook.
 ## WIFI Setup
   * To use your own device with wifi, you need to follow these steps
     * Click myTechHub icon in the task bar of your desktop.
