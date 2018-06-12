@@ -16,10 +16,12 @@
 ## Python Environment Setup
   * Install Anaconda
     * Download [Python 3.6](https://www.python.org/downloads/release/python-360/) version from the website.
+    
       [https://www.anaconda.com/download/](https://www.anaconda.com/download/)
     * Install
   * Install PyCharm
-    * Download directly from [JetBrains](https://www.jetbrains.com/pycharm/)
+    * Download directly from [JetBrains](https://www.jetbrains.com/pycharm/).
+    
       [https://www.jetbrains.com/pycharm/download/](https://www.jetbrains.com/pycharm/download/)
     * Install
     * Open and setup preferences (UI, fonts, appearences, Markdown supports)..
