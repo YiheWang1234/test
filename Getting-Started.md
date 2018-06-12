@@ -8,19 +8,19 @@
   * Able to check JPMC email by Outlook.
 ## WIFI Setup
   * To use your own device with wifi, you need to follow these steps
-    * Click myTechHub icon in the task bar of your desktop.
+    * Click myTechHub icon on the task bar of your desktop.
     * Click mobile & multimedia icon > Wireless Access
     * Login with your SID and password
     * Click add Device and enter your device address.
     * After adding the device, you should be able to use the wifi: JPMCVisitor with password: jpmorganchase.
 ## Python Environment Setup
   * Install Anaconda
-    * Download Python 3.6 version from the website.
-      https://www.anaconda.com/download/
+    * Download [Python 3.6](https://www.python.org/downloads/release/python-360/) version from the website.
+      [https://www.anaconda.com/download/](https://www.anaconda.com/download/)
     * Install
   * Install PyCharm
-    * Download directly from JetBrains
-      https://www.jetbrains.com/pycharm/download/
+    * Download directly from [JetBrains](https://www.jetbrains.com/pycharm/)
+      [https://www.jetbrains.com/pycharm/download/](https://www.jetbrains.com/pycharm/download/)
     * Install
     * Open and setup preferences (UI, fonts, appearences, Markdown supports)..
   * Setup PyCharm
