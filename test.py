@@ -17,3 +17,6 @@ def test4():
     print("test brunch")
 
 test4()
+
+def test5():
+    print("easy")
