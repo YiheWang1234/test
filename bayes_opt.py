@@ -1,3 +1,5 @@
+#Not good: minimizing/maximizing on continuous domain
+
 from bayes_opt import BayesianOptimization
 import numpy as np
 from statsmodels.tsa.arima_model import ARIMA
