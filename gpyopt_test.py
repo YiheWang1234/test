@@ -1,6 +1,5 @@
-#Not good: minimizing/maximizing on continuous domain
+import GPyOpt
 
-from bayes_opt import BayesianOptimization
 import numpy as np
 from statsmodels.tsa.arima_model import ARIMA
 
@@ -22,10 +21,3 @@ def arima(p, d, q):
     except ValueError:
         return 100000
 
-
-bo = BayesianOptimization(f=lambda p, d, q: arima(int(p), int(d), int(q)),
-                          pbounds={"p": (0, 3), "d": (0, 2), "q": (0, 3)}, verbose=0)
-bo.maximize(init_points=2, n_iter=25, acq="ei", xi=1e-4, **gp_params)
-params = bo.res["all"]["params"]
-values = bo.res["all"]["values"]
-params[values.index(max(values))]
