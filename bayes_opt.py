@@ -24,6 +24,6 @@ def arima(p, d, q):
 bo = BayesianOptimization(f=lambda p, d, q: arima(int(p), int(d), int(q)),
                           pbounds={"p": (0, 3), "d": (0, 2), "q": (0, 3)}, verbose=0)
 bo.maximize(init_points=2, n_iter=25, acq="ei", xi=1e-4, **gp_params)
-bo.res["all"]["params"]
-bo.res["all"]["values"]
-
+params = bo.res["all"]["params"]
+values = bo.res["all"]["values"]
+params[values.index(max(values))]
