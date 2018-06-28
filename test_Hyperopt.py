@@ -1,6 +1,3 @@
-import hyperopt
-
-import pandas as pd
 import numpy as np
 from statsmodels.tsa.arima_model import ARIMA
 from hyperopt import fmin, tpe, hp
@@ -13,10 +10,9 @@ gp_params = {"alpha": 1e-5, "n_restarts_optimizer": 2}
 for i in range(n):
     data.append(data[-1]*0.6 - data[-2]*0.3 + 0.7*err[i] - 0.2*err[i+1])
 
+
 def arima(params):
-    p = params["p"]
-    d = params["d"]
-    q = params["q"]
+    p, d, q = list(params)
 
     p = int(p)
     d = int(d)
@@ -34,5 +30,5 @@ def arima(params):
         return np.inf
 
 
-space = [hp.randint("p", 4), hp.randint("d", 4), hp.randint("q", 4)]
-fmin(arima, space=space, algo=tpe.suggest, max_evals=100)
+space1 = [hp.randint("p", 4), hp.randint("d", 4), hp.randint("q", 4)]
+fmin(arima, space=space1, algo=tpe.suggest, max_evals=100)
