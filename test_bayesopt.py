@@ -1,6 +1,7 @@
 #Not good: minimizing/maximizing on continuous domain
 
 from test_bayesopt import BayesianOptimization
+from BayesianOptimization.bayes_opt.bayesian_optimization import BayesianOptimization
 import numpy as np
 from statsmodels.tsa.arima_model import ARIMA
 

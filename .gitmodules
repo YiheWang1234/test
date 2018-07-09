@@ -1,0 +1,3 @@
+[submodule ".idea/BayesianOptimization"]
+	path = .idea/BayesianOptimization
+	url = ../../fmfn/BayesianOptimization.git
