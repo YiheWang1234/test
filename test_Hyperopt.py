@@ -30,11 +30,17 @@ def arima(p,d,q):
         return np.inf
 
 
-space1 = [hp.randint("p", 4), hp.randint("d", 4), hp.randint("q", 4)]
+space1 = (hp.randint("p", 4), hp.randint("d", 4), hp.randint("q", 4))
+space1 = [("p", hp.randint("p", 4)), ("d", hp.randint("d", 4)), ("q", hp.randint("q", 4))]
+space1 = hp.uniform('p', -10, 10)
 
+fmin(fn=arima, space=space1, algo=tpe.suggest, max_evals=100)
 
-def objective2(args):
-    return arima(*args)
+#python3 not working, implementated in python2
+from hyperopt import fmin, tpe, hp
+best = fmin(fn=lambda x: x ** 2,
+    space=hp.uniform('x', -10, 10),
+    algo=tpe.suggest,
+    max_evals=100)
+print(best)
 
-
-fmin(objective2, space=space1, algo=tpe.suggest, max_evals=100)
