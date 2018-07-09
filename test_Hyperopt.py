@@ -11,8 +11,8 @@ for i in range(n):
     data.append(data[-1]*0.6 - data[-2]*0.3 + 0.7*err[i] - 0.2*err[i+1])
 
 
-def arima(params):
-    p, d, q = list(params)
+def arima(p,d,q):
+    #p, d, q = list(params)
 
     p = int(p)
     d = int(d)
@@ -31,4 +31,10 @@ def arima(params):
 
 
 space1 = [hp.randint("p", 4), hp.randint("d", 4), hp.randint("q", 4)]
-fmin(arima, space=space1, algo=tpe.suggest, max_evals=100)
+
+
+def objective2(args):
+    return arima(*args)
+
+
+fmin(objective2, space=space1, algo=tpe.suggest, max_evals=100)

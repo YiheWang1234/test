@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e21855fe-3b1c-4fc5-ba6e-0811a19fa5a8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Hyperopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Hyperopt.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,11 +14,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_bayesopt.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_bayesopt.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_bayesopt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="18" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="18" />
+            <state relative-caret-position="465">
+              <caret line="31" column="33" lean-forward="true" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+              <folding>
+                <element signature="e#55#101#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -35,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_Hyperopt.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_Hyperopt.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_Hyperopt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="210">
+              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -66,9 +69,9 @@
         <option value="$PROJECT_DIR$/gpyopt_test.py" />
         <option value="$PROJECT_DIR$/test_Spearmint.py" />
         <option value="$PROJECT_DIR$/abc.py" />
-        <option value="$PROJECT_DIR$/test_Hyperopt.py" />
         <option value="$PROJECT_DIR$/test_gpyopt.py" />
         <option value="$PROJECT_DIR$/test_bayesopt.py" />
+        <option value="$PROJECT_DIR$/test_Hyperopt.py" />
       </list>
     </option>
   </component>
@@ -209,18 +212,26 @@
       <option name="project" value="LOCAL" />
       <updated>1530196970197</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="init">
+      <created>1531163213440</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1531163213440</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32969698" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32969698" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="7" visible="true" weight="0.32969698" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32969698" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32969698" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -246,6 +257,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+          <folding>
+            <element signature="e#55#101#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -270,7 +284,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_bayesopt.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#55#101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/abc.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -293,12 +313,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_Hyperopt.py">
+    <entry file="file://$PROJECT_DIR$/test_bayesopt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="465">
+          <caret line="31" column="33" lean-forward="true" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#55#101#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -313,10 +333,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_bayesopt.py">
+    <entry file="file://$PROJECT_DIR$/test_Hyperopt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="18" />
+        <state relative-caret-position="210">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
