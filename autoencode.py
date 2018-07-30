@@ -1,3 +1,4 @@
+#!/anaconda3/bin/python3.6
 from __future__ import division, print_function, absolute_import
 
 import tensorflow as tf

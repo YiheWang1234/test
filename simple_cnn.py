@@ -1,3 +1,4 @@
+#!/anaconda3/bin/python3.6
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,7 +8,7 @@ mnist = input_data.read_data_sets("./tmp/data", one_hot=True)
 
 learning_rate = 0.01
 batch_size = 200
-num_steps = 10000
+num_steps = 500
 
 display_step = 500
 examples_to_show = 10
@@ -44,6 +45,8 @@ loss = tf.reduce_sum(tf.pow(y - y_pred, 2))
 optimizer = tf.train.RMSPropOptimizer(learning_rate).minimize(loss)
 init = tf.global_variables_initializer()
 
+print("start training and testing")
+
 with tf.Session() as sess:
     sess.run(init)
 
@@ -57,6 +60,13 @@ with tf.Session() as sess:
             print("Step %i: Minibatch Loss: %f" % (i, l))
 
     #test
+    acc = 0
     for i in range(1, num_steps+1):
         batch_x, batch_y = mnist.test.next_batch(batch_size)
-        g = sess.run()
+        g = sess.run(y_pred, feed_dict={X: batch_x})
+        acc += sum(sum(batch_y - g))/batch_size
+    print("the accuracy of cnn is %s" % (acc))
+    print(g)
+    print(np.sum(g, axis=0))
+        
+
