@@ -141,6 +141,7 @@ class Model():
             loss_seq = -px
             self.loss_seq = tf.reduce_mean(loss_seq)
             self.h_mu = h_mu
+            self.h_sigma = h_sigma
 
         with tf.name_scope("train") as scope:
             # Use learning rte decay

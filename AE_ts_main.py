@@ -15,8 +15,8 @@ from tensorflow.contrib.tensorboard.plugins import projector
 from AE_ts_model import Model, open_data, plot_data, plot_z_run
 
 """Hyperparameters"""
-direc = '/Users/yihewang/Documents/github/jpm'
-LOG_DIR = '/Users/yihewang/Documents/github/jpm/'
+direc = './'
+LOG_DIR = './'
 config = {}  # Put all configuration information into the dict
 config['num_layers'] = 2  # number of layers of stacked RNN's
 config['hidden_size'] = 90  # memory cells in a layer
@@ -27,10 +27,10 @@ config['crd'] = 1  # Hyperparameter for future generalization
 config['num_l'] = 20  # number of units in the latent space
 
 plot_every = 100  # after _plot_every_ GD steps, there's console output
-max_iterations = 1000  # maximum number of iterations
+max_iterations = 100  # maximum number of iterations
 dropout = 0.8  # Dropout rate
 """Load the data"""
-X_train, X_val, y_train, y_val = open_data('/Users/yihewang/Documents/github/jpm/UCR_TS_Archive_2015')
+X_train, X_val, y_train, y_val = open_data('./UCR_TS_Archive_2015')
 
 N = X_train.shape[0]
 Nval = X_val.shape[0]
@@ -93,6 +93,7 @@ if True:
     label = []  # The label to save to visualize the latent space
     z_run = []
     x_out = []
+    sigma_out = []
 
     while start + batch_size < Nval:
         run_ind = range(start, start + batch_size)
@@ -102,15 +103,21 @@ if True:
         x_out_fetch = (sess.run(model.h_mu, feed_dict={model.z_mu: z_mu_fetch, model.keep_prob: 1.0})).transpose()
         x_out.append(x_out_fetch)
 
+        sigma_out_fetch = (sess.run(model.h_sigma, feed_dict={model.z_mu: z_mu_fetch, model.keep_prob: 1.0})).transpose()
+        sigma_out.append(sigma_out_fetch)
+
         start += batch_size
 
     z_run = np.concatenate(z_run, axis=0)
     x_out = np.concatenate(x_out, axis=0)
+    sigma_out = np.concatenate(sigma_out, axis=0)
 
     label = y_val[:start]
 
     plot_z_run(z_run, label)
 
+plot_data(x_out, y_val[0:960])
+plot_data(sigma_out, y_val[0:960])
 
 # Save the projections also to Tensorboard
 saver = tf.train.Saver()
@@ -131,6 +138,3 @@ writer.flush()
 
 # Now open Tensorboard with
 #  $tensorboard --logdir = LOG_DIR
-
-
-plot_data(x_out, y_val[0:960])
