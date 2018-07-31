@@ -30,7 +30,8 @@ def open_data(direc, ratio_train=0.8, dataset="ECG5000"):
     return data[ind[:ind_cut], 1:], data[ind[ind_cut:], 1:], data[ind[:ind_cut], 0], data[ind[ind_cut:], 0]
 
 
-def plot_data(X_train, y_train, plot_row=5):
+def plot_data(X_train, y_train, plot_row=5, seed=1234):
+    np.random.seed(seed=seed)
     counts = dict(Counter(y_train))
     num_classes = len(np.unique(y_train))
     f, axarr = plt.subplots(plot_row, num_classes)
@@ -40,6 +41,7 @@ def plot_data(X_train, y_train, plot_row=5):
         ind_plot = np.random.choice(ind[0], size=plot_row)
         for n in range(plot_row):  # Loops over rows
             axarr[n, c].plot(X_train[ind_plot[n], :])
+            #axarr[n, c].plot(X_train[n, :])
             # Only shops axes for bottom row and left column
             if n == 0: axarr[n, c].set_title('Class %.0f (%.0f)' % (c, counts[float(c)]))
             if not n == plot_row - 1:

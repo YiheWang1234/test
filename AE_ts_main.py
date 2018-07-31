@@ -27,7 +27,7 @@ config['crd'] = 1  # Hyperparameter for future generalization
 config['num_l'] = 20  # number of units in the latent space
 
 plot_every = 100  # after _plot_every_ GD steps, there's console output
-max_iterations = 100  # maximum number of iterations
+max_iterations = 500  # maximum number of iterations
 dropout = 0.8  # Dropout rate
 """Load the data"""
 X_train, X_val, y_train, y_val = open_data('./UCR_TS_Archive_2015')
@@ -119,22 +119,22 @@ if True:
 plot_data(x_out, y_val[0:960])
 plot_data(sigma_out, y_val[0:960])
 
-# Save the projections also to Tensorboard
-saver = tf.train.Saver()
-saver.save(sess, os.path.join(LOG_DIR, "model.ckpt"), step)
-config = projector.ProjectorConfig()
-# You can add multiple embeddings. Here we add only one.
-embedding = config.embeddings.add()
-embedding.tensor_name = model.z_mu.name
-# Link this tensor to its metadata file (e.g. labels).
-embedding.metadata_path = os.path.join(LOG_DIR, 'metadata.tsv')
-
-# Saves a configuration file that TensorBoard will read during startup.
-projector.visualize_embeddings(writer, config)
-saver.save(sess, os.path.join(LOG_DIR, "model.ckpt"), step + 1)
-writer.flush()
-
-
-
-# Now open Tensorboard with
-#  $tensorboard --logdir = LOG_DIR
+# # Save the projections also to Tensorboard
+# saver = tf.train.Saver()
+# saver.save(sess, os.path.join(LOG_DIR, "model.ckpt"), step)
+# config = projector.ProjectorConfig()
+# # You can add multiple embeddings. Here we add only one.
+# embedding = config.embeddings.add()
+# embedding.tensor_name = model.z_mu.name
+# # Link this tensor to its metadata file (e.g. labels).
+# embedding.metadata_path = os.path.join(LOG_DIR, 'metadata.tsv')
+#
+# # Saves a configuration file that TensorBoard will read during startup.
+# projector.visualize_embeddings(writer, config)
+# saver.save(sess, os.path.join(LOG_DIR, "model.ckpt"), step + 1)
+# writer.flush()
+#
+#
+#
+# # Now open Tensorboard with
+# #  $tensorboard --logdir = LOG_DIR
