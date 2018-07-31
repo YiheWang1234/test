@@ -27,7 +27,7 @@ config['crd'] = 1  # Hyperparameter for future generalization
 config['num_l'] = 20  # number of units in the latent space
 
 plot_every = 100  # after _plot_every_ GD steps, there's console output
-max_iterations = 500  # maximum number of iterations
+max_iterations = 10000  # maximum number of iterations
 dropout = 0.8  # Dropout rate
 """Load the data"""
 X_train, X_val, y_train, y_val = open_data('./UCR_TS_Archive_2015')
@@ -138,3 +138,6 @@ plot_data(sigma_out, y_val[0:960])
 #
 # # Now open Tensorboard with
 # #  $tensorboard --logdir = LOG_DIR
+
+
+#test result
