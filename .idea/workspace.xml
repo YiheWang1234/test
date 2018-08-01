@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e21855fe-3b1c-4fc5-ba6e-0811a19fa5a8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/AE_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AE_ts_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/AE_ts_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AE_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/AE_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dte_x.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/dte_x.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dte_z.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/dte_z.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtr_x.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/dtr_x.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dtr_z.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/dtr_z.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.npz" beforeDir="false" afterPath="$PROJECT_DIR$/output.npz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/rnn.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +24,8 @@
           <file leaf-file-name="AE_ts_main.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/AE_ts_main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="336">
-                  <caret line="152" column="20" selection-start-line="152" selection-start-column="15" selection-end-line="152" selection-end-column="20" />
+                <state relative-caret-position="284">
+                  <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
                   <folding>
                     <element signature="e#121#139#0" expanded="true" />
                   </folding>
@@ -61,8 +61,8 @@
           <file leaf-file-name="AE_test.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/AE_test.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="98" column="47" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="47" />
+                <state relative-caret-position="440">
+                  <caret line="112" column="9" selection-start-line="112" selection-end-line="112" selection-end-column="9" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -102,9 +102,9 @@
         <option value="$PROJECT_DIR$/test_bayesopt.py" />
         <option value="$PROJECT_DIR$/test_Hyperopt.py" />
         <option value="$PROJECT_DIR$/AE_ts_model.py" />
-        <option value="$PROJECT_DIR$/AE_ts_main.py" />
         <option value="$PROJECT_DIR$/rnn.py" />
         <option value="$PROJECT_DIR$/rnn_x.py" />
+        <option value="$PROJECT_DIR$/AE_ts_main.py" />
         <option value="$PROJECT_DIR$/AE_test.py" />
       </list>
     </option>
@@ -281,12 +281,25 @@
       <option name="project" value="LOCAL" />
       <updated>1533125095851</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="init">
+      <created>1533147367156</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1533147367156</updated>
+    </task>
+    <task id="LOCAL-00016" summary="init">
+      <created>1533154804503</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1533154804503</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.121916845" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -445,16 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AE_ts_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="152" column="20" selection-start-line="152" selection-start-column="15" selection-end-line="152" selection-end-column="20" />
-          <folding>
-            <element signature="e#121#139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/autoencode.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-48">
@@ -471,10 +474,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AE_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="98" column="47" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="47" />
+        <state relative-caret-position="440">
+          <caret line="112" column="9" selection-start-line="112" selection-end-line="112" selection-end-column="9" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AE_ts_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
+          <folding>
+            <element signature="e#121#139#0" expanded="true" />
           </folding>
         </state>
       </provider>

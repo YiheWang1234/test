@@ -16,6 +16,9 @@ x_train_out = data['X_train_out'][0:n_train]
 x_val = data['X_val'][0:n_val, :]
 x_val_out = data['X_val_out'][0:n_val]
 
+sigma_train = data['sig_t']
+sigma_val = data['sigma_val']
+
 data_train_x = np.concatenate((x_train_out.reshape((n_train, 1)),
                                x_train), axis=1)
 
@@ -101,3 +104,10 @@ predictions = predict_job.get_result_when_complete()
 MSE_Z = np.sum((np.array(predictions.iloc[:, 0]) - x_val_out)**2)/n_val
 MSE_Z
 # 0.5925748682059658
+
+# ========== #
+# Sigma mean #
+# ========== #
+
+AVE_sigma = np.sum(sigma_val[:, -1]**2)/n_val
+AVE_sigma
