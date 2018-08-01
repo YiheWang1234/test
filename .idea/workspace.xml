@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e21855fe-3b1c-4fc5-ba6e-0811a19fa5a8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/rnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AE_ts_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/AE_ts_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/abc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/convolutional_network.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple_cnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_Hyperopt.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_Spearmint.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_bayesopt.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_gpyopt.py" beforeDir="false" />
-    </list>
+    <list default="true" id="e21855fe-3b1c-4fc5-ba6e-0811a19fa5a8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +16,8 @@
           <file leaf-file-name="AE_ts_main.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/AE_ts_main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="449">
-                  <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
+                <state relative-caret-position="329">
+                  <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
                   <folding>
                     <element signature="e#121#139#0" expanded="true" />
                   </folding>
@@ -268,11 +254,19 @@
       <option name="project" value="LOCAL" />
       <updated>1533046744829</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="init">
+      <created>1533125095851</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1533125095851</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.121916845" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -512,8 +506,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AE_ts_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
+        <state relative-caret-position="329">
+          <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
           <folding>
             <element signature="e#121#139#0" expanded="true" />
           </folding>
