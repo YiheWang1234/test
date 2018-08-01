@@ -27,15 +27,13 @@ config['crd'] = 1  # Hyperparameter for future generalization
 config['num_l'] = 20  # number of units in the latent space
 
 plot_every = 100  # after _plot_every_ GD steps, there's console output
-max_iterations = 5000  # maximum number of iterations
+max_iterations = 100  # maximum number of iterations
 dropout = 0.8  # Dropout rate
 """Load the data"""
 X_train, X_val, y_train, y_val = open_data('./UCR_TS_Archive_2015')
-D = X_train.shape[1]
 
 X_train, X_train_out = X_train[:, :-1], X_train[:, -1]
 X_val, X_val_out = X_val[:, :-1], X_val[:, -1]
-
 
 N = X_train.shape[0]
 Nval = X_val.shape[0]
@@ -119,40 +117,43 @@ if True:
 
     label = y_val[:start]
 
-    plot_z_run(z_run, label)
-
+plot_z_run(z_run, label)
 plot_data(x_out, y_val[0:960])
 plot_data(sigma_out, y_val[0:960])
 
-while True:
+
+
+if True:
+    ##Extract the latent space coordinates of the validation set
     start = 0
     z_t = []
-    x_train_est = []
-    sigma_train_est = []
+    x_t = []
+    sig_t = []
 
     while start + batch_size < N:
+        print(start)
         run_ind = range(start, start + batch_size)
         z_mu_fetch = sess.run(model.z_mu, feed_dict={model.x: X_train[run_ind], model.keep_prob: 1.0})
         z_t.append(z_mu_fetch)
 
         x_out_fetch = (sess.run(model.h_mu, feed_dict={model.z_mu: z_mu_fetch, model.keep_prob: 1.0})).transpose()
-        x_train_est.append(x_out_fetch)
+        x_t.append(x_out_fetch)
 
         sigma_out_fetch = (sess.run(model.h_sigma, feed_dict={model.z_mu: z_mu_fetch, model.keep_prob: 1.0})).transpose()
-        sigma_train_est.append(sigma_out_fetch)
+        sig_t.append(sigma_out_fetch)
 
         start += batch_size
 
     z_t = np.concatenate(z_t, axis=0)
-    x_train_est = np.concatenate(x_train_est, axis=0)
-    sigma_train_est = np.concatenate(sigma_train_est, axis=0)
+    x_t = np.concatenate(x_t, axis=0)
+    sig_t = np.concatenate(sig_t, axis=0)
 
 
 np.savez('output', z=z_run, mu_val=x_out, sigma_val=sigma_out,
          X_val=X_val, X_val_out=X_val_out,
          X_train=X_train, X_train_out=X_train_out,
-         z_t=z_t, x_train_est=x_train_est,
-         sigma_train_est=sigma_train_est
+         z_t=z_t, x_t=x_t,
+         sig_t=sig_t
          )
 
 
