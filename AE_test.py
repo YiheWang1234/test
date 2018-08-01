@@ -74,6 +74,8 @@ predict_job = models[0].request_predictions(dataset.id)
 predictions = predict_job.get_result_when_complete()
 
 MSE_X = np.sum((np.array(predictions.iloc[:, 0]) - x_val_out)**2)/n_val
+MSE_X
+# 0.11836186431663784
 
 # ======= #
 # Model z #
@@ -97,3 +99,5 @@ predict_job = models[0].request_predictions(dataset.id)
 predictions = predict_job.get_result_when_complete()
 
 MSE_Z = np.sum((np.array(predictions.iloc[:, 0]) - x_val_out)**2)/n_val
+MSE_Z
+# 0.5925748682059658
