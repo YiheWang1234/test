@@ -109,9 +109,9 @@ MSE_Z
 # Sigma mean #
 # ========== #
 
-AVE_sigma = np.sum(sigma_val[:, -1]**2)/n_val
+AVE_sigma = np.sum(sigma_val[:, -1])/n_val
 AVE_sigma
-# 3.7791295369466145
+# 1.9439983367919922
 
 from arch import arch_model
 varvec = []
@@ -123,3 +123,4 @@ for i in range(n_val):
 
 AVE_garch_sigma = np.mean(varvec)
 # 4.0762582624823782
+
