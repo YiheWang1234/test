@@ -99,14 +99,14 @@ class Model():
 
         # with tf.name_scope("Enc_2_lat") as scope:
             # layer for mean of z
-            W_mu = tf.get_variable('W_mu', [hidden_size, num_l])
+            W_mu = tf.get_variable('W_mu', [hidden_size, 1])
 
             outputs_enc, _ = tf.contrib.rnn.static_rnn(cell_enc,
                                                       inputs=tf.unstack(self.x_exp, axis=2),
                                                       initial_state=initial_state_enc)
             cell_output = outputs_enc[-1]
 
-            b_mu = tf.get_variable('b_mu', [num_l])
+            b_mu = tf.get_variable('b_mu', [1])
             self.z_mu = tf.nn.xw_plus_b(cell_output, W_mu, b_mu, name='z_mu')  # mu, mean, of latent space
 
             # Train the point in latent space to have zero-mean and unit-variance on batch basis
@@ -116,8 +116,11 @@ class Model():
         with tf.name_scope("Lat_2_dec") as scope:
             # layer to generate initial state
 
-            W_state = tf.get_variable('W_state', [num_l, hidden_size])
+            W_state = tf.get_variable('W_state', [1, hidden_size])
             b_state = tf.get_variable('b_state', [hidden_size])
+
+
+
             z_state = tf.nn.xw_plus_b(self.z_mu, W_state, b_state, name='z_state')  # mu, mean, of latent space
             # z_state = self.z_mu
 
