@@ -143,7 +143,9 @@ class Model():
             dist = tf.contrib.distributions.Normal(h_mu, h_sigma)
             px = dist.log_prob(tf.transpose(self.x))
             loss_seq = -px
-            self.loss_seq = tf.reduce_mean(loss_seq)
+            #self.loss_seq = tf.reduce_mean(loss_seq)
+            self.loss_seq = tf.reduce_mean(tf.pow((h_mu - tf.transpose(self.x)), 2))
+
             self.h_mu = h_mu
             self.h_sigma = h_sigma
 
