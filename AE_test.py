@@ -111,3 +111,15 @@ MSE_Z
 
 AVE_sigma = np.sum(sigma_val[:, -1]**2)/n_val
 AVE_sigma
+# 3.7791295369466145
+
+from arch import arch_model
+varvec = []
+for i in range(n_val):
+    am = arch_model(data_test_x[i, :], vol='Garch', p=1, o=0, q=1, dist='Normal')
+    res = am.fit(update_freq=10)
+    forecast = res.forecast()
+    varvec.append(float(forecast.variance.iloc[-1]))
+
+AVE_garch_sigma = np.mean(varvec)
+# 4.0762582624823782
