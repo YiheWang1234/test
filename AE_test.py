@@ -40,13 +40,20 @@ data_train_x_hat = np.concatenate((x_train_hat.reshape((n_train, 1)),
 data_test_x_hat = np.concatenate((x_val_hat.reshape((n_val, 1)),
                                   x_val), axis=1)
 
+data_train_zx = np.concatenate((x_train_out.reshape((n_train, 1)), z_train,
+                                x_train[:, :-1]), axis=1)
+
+data_test_zx = np.concatenate((x_val_out.reshape((n_val, 1)), z_val,
+                                x_val[:, :-1]), axis=1)
+
 dtr_x = pd.DataFrame(data_train_x)
 dtr_z = pd.DataFrame(data_train_z)
 dte_x = pd.DataFrame(data_test_x)
 dte_z = pd.DataFrame(data_test_z)
 dtr_xhat = pd.DataFrame(data_train_x_hat)
 dte_xhat = pd.DataFrame(data_test_x_hat)
-
+dtr_xz = pd.DataFrame(data_train_zx)
+dte_xz = pd.DataFrame(data_test_zx)
 
 dtr_x.to_excel('dtr_x.xlsx', index=False)
 dtr_z.to_excel('dtr_z.xlsx', index=False)
@@ -54,6 +61,8 @@ dte_x.to_excel('dte_x.xlsx', index=False)
 dte_z.to_excel('dte_z.xlsx', index=False)
 dtr_xhat.to_excel('dtr_xhat.xlsx', index=False)
 dte_xhat.to_excel('dte_xhat.xlsx', index=False)
+dtr_xz.to_excel('dtr_xz.xlsx', index=False)
+dte_xz.to_excel('dte_xz.xlsx', index=False)
 
 # ========= #
 # Datarobot #
@@ -72,12 +81,12 @@ def get_projects_by_name(name):
 # ======= #
 
 # create project
-# TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_x.xlsx'
-# TEST_SET = '/Users/alex/Desktop/roar/test/dte_x.xlsx'
-TRAIN_SET = '/Users/yihewang/Desktop/test/dtr_x.xlsx'
-TEST_SET = '/Users/yihewang/Desktop/test/dte_x.xlsx'
+TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_x.xlsx'
+TEST_SET = '/Users/alex/Desktop/roar/test/dte_x.xlsx'
+# TRAIN_SET = '/Users/yihewang/Desktop/test/dtr_x.xlsx'
+# TEST_SET = '/Users/yihewang/Desktop/test/dte_x.xlsx'
 
-project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_x4')
+project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_xx')
 project_autopilot.set_target(target='0', mode=dr.AUTOPILOT_MODE.QUICK, worker_count=4)
 models = project_autopilot.get_models()
 
@@ -85,7 +94,7 @@ models = project_autopilot.get_models()
 # blue_prints
 
 # prediction
-projects = get_projects_by_name('AE_x3')
+projects = get_projects_by_name('AE_xx')
 project_autopilot = projects[0]
 dataset = project_autopilot.upload_dataset(TEST_SET)
 models = project_autopilot.get_models()
@@ -98,6 +107,7 @@ MSE_X
 # z20 x: 0.08560085181747094
 # z100 x: 0.067980258029508925
 # z100 mu: 0.087020828921637122
+# xz: 0.05237549349247802
 
 # ======= #
 # Model z #
@@ -105,17 +115,17 @@ MSE_X
 
 # create project
 
-# TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_z.xlsx'
-# TEST_SET = '/Users/alex/Desktop/roar/test/dte_z.xlsx'
-TRAIN_SET = '/Users/yihewang/Desktop/test/dtr_z.xlsx'
-TEST_SET = '/Users/yihewang/Desktop/test/dte_z.xlsx'
+TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_xz.xlsx'
+TEST_SET = '/Users/alex/Desktop/roar/test/dte_xz.xlsx'
+# TRAIN_SET = '/Users/yihewang/Desktop/test/dtr_z.xlsx'
+# TEST_SET = '/Users/yihewang/Desktop/test/dte_z.xlsx'
 
-project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_z4')
+project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_xz')
 project_autopilot.set_target(target='0', mode=dr.AUTOPILOT_MODE.QUICK, worker_count=4)
 models = project_autopilot.get_models()
 
 # prediction
-projects = get_projects_by_name('AE_z4')
+projects = get_projects_by_name('AE_xz')
 project_autopilot = projects[0]
 dataset = project_autopilot.upload_dataset(TEST_SET)
 models = project_autopilot.get_models()
@@ -128,6 +138,7 @@ MSE_Z
 # z20 x: 2.206509717731684
 # z100 x: 1.8927718687551442
 # z100 mu: 5.7830173627389607
+# zx: 0.04112600321463274
 
 # ========== #
 # Sigma mean #
@@ -157,17 +168,17 @@ AVE_garch_sigma
 
 # create project
 
-# TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_xhat.xlsx'
-# TEST_SET = '/Users/alex/Desktop/roar/test/dte_xhat.xlsx'
-TRAIN_SET = '/Users/yihewang/Desktop/test/dtr_xhat.xlsx'
-TEST_SET = '/Users/yihewang/Desktop/test/dte_xhat.xlsx'
+TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_xhat.xlsx'
+TEST_SET = '/Users/alex/Desktop/roar/test/dte_xhat.xlsx'
+# TRAIN_SET = '/Users/yihewang/Desktop/test/dtr_xhat.xlsx'
+# TEST_SET = '/Users/yihewang/Desktop/test/dte_xhat.xlsx'
 
-project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_xhat4')
+project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_zxhat')
 project_autopilot.set_target(target='0', mode=dr.AUTOPILOT_MODE.QUICK, worker_count=4)
 models = project_autopilot.get_models()
 
 # prediction
-projects = get_projects_by_name('AE_xhat4')
+projects = get_projects_by_name('AE_zxhat')
 project_autopilot = projects[0]
 dataset = project_autopilot.upload_dataset(TEST_SET)
 models = project_autopilot.get_models()
@@ -181,3 +192,4 @@ MSE_xhat
 # z20 x predict xhat: 0.5094349677079075
 # z100 x: 0.90815494610646186
 # z100 mu: 1.2160574210404438
+# xz: 0.9402916366946954
