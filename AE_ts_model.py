@@ -97,7 +97,7 @@ class Model():
             # Initial state
             initial_state_enc = cell_enc.zero_state(batch_size, tf.float32)
 
-        # with tf.name_scope("Enc_2_lat") as scope:
+            # with tf.name_scope("Enc_2_lat") as scope:
             # layer for mean of z
             W_mu = tf.get_variable('W_mu', [hidden_size, num_l])
 
@@ -116,17 +116,21 @@ class Model():
         with tf.name_scope("Lat_2_dec") as scope:
             # layer to generate initial state
 
-            W_state = tf.get_variable('W_state', [num_l, hidden_size])
+            # W_state = tf.get_variable('W_state', [num_l, hidden_size])
+            # b_state = tf.get_variable('b_state', [hidden_size])
+            # z_state = tf.nn.xw_plus_b(self.z_mu, W_state, b_state, name='z_state')  # mu, mean, of latent space
+
+            W_state = tf.get_variable('W_state', [num_l + sl, hidden_size])
             b_state = tf.get_variable('b_state', [hidden_size])
-            z_state = tf.nn.xw_plus_b(self.z_mu, W_state, b_state, name='z_state')  # mu, mean, of latent space
-            # z_state = self.z_mu
+            self.z_tmp = tf.concat([self.z_mu, self.x], 1)
+            self.z_state = tf.nn.xw_plus_b(self.z_tmp, W_state, b_state, name='z_state')
 
         with tf.variable_scope("Decoder") as scope:
             # The decoder, also multi-layered
             cell_dec = tf.contrib.rnn.MultiRNNCell([LSTMCell(hidden_size) for _ in range(num_layers)])
 
             # Initial state
-            initial_state_dec = tuple([(z_state, z_state)] * num_layers)
+            initial_state_dec = tuple([(self.z_state, self.z_state)] * num_layers)
             dec_inputs = [tf.zeros([batch_size, 1])] * sl
             # outputs_dec, _ = tf.nn.seq2seq.rnn_decoder(dec_inputs, initial_state_dec, cell_dec)
             outputs_dec, _ = tf.contrib.rnn.static_rnn(cell_dec,

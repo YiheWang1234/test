@@ -24,14 +24,13 @@ config['max_grad_norm'] = 5  # maximum gradient norm during training
 config['batch_size'] = batch_size = 64
 config['learning_rate'] = .005
 config['crd'] = 1  # Hyperparameter for future generalization
-config['num_l'] = 100  # number of units in the latent space
+config['num_l'] = 1  # number of units in the latent space
 
 plot_every = 100  # after _plot_every_ GD steps, there's console output
-max_iterations = 1000  # maximum number of iterations
+max_iterations = 100  # maximum number of iterations
 dropout = 0.8  # Dropout rate
 """Load the data"""
 X_train, X_val, y_train, y_val = open_data('./UCR_TS_Archive_2015')
-
 X_train, X_train_out = X_train[:, :-1], X_train[:, -1]
 X_val, X_val_out = X_val[:, :-1], X_val[:, -1]
 
@@ -49,7 +48,7 @@ if base != 0:
     y_val -= base
 
 # Plot data   # and save high quality plt.savefig('data_examples.eps', format='eps', dpi=1000)
-plot_data(X_train, y_train)
+# plot_data(X_train, y_train)
 
 # Proclaim the epochs
 epochs = np.floor(batch_size * max_iterations / N)
@@ -104,10 +103,11 @@ if True:
         z_mu_fetch = sess.run(model.z_mu, feed_dict={model.x: X_val[run_ind], model.keep_prob: 1.0})
         z_run.append(z_mu_fetch)
 
-        x_out_fetch = (sess.run(model.h_mu, feed_dict={model.z_mu: z_mu_fetch, model.keep_prob: 1.0})).transpose()
+        decode_input = np.concatenate([z_mu_fetch, X_val[run_ind]], axis=1)
+        x_out_fetch = (sess.run(model.h_mu, feed_dict={model.z_tmp: decode_input, model.keep_prob: 1.0})).transpose()
         x_out.append(x_out_fetch)
 
-        sigma_out_fetch = (sess.run(model.h_sigma, feed_dict={model.z_mu: z_mu_fetch, model.keep_prob: 1.0})).transpose()
+        sigma_out_fetch = (sess.run(model.h_sigma, feed_dict={model.z_tmp: decode_input, model.keep_prob: 1.0})).transpose()
         sigma_out.append(sigma_out_fetch)
 
         start += batch_size
@@ -132,15 +132,16 @@ if True:
     sig_t = []
 
     while start + batch_size < N:
-        print(start)
+        #print(start)
         run_ind = range(start, start + batch_size)
         z_mu_fetch = sess.run(model.z_mu, feed_dict={model.x: X_train[run_ind], model.keep_prob: 1.0})
         z_t.append(z_mu_fetch)
 
-        x_out_fetch = (sess.run(model.h_mu, feed_dict={model.z_mu: z_mu_fetch, model.keep_prob: 1.0})).transpose()
+        decode_input = np.concatenate([z_mu_fetch, X_train[run_ind]], axis=1)
+        x_out_fetch = (sess.run(model.h_mu, feed_dict={model.z_tmp: decode_input, model.keep_prob: 1.0})).transpose()
         x_t.append(x_out_fetch)
 
-        sigma_out_fetch = (sess.run(model.h_sigma, feed_dict={model.z_mu: z_mu_fetch, model.keep_prob: 1.0})).transpose()
+        sigma_out_fetch = (sess.run(model.h_sigma, feed_dict={model.z_tmp: decode_input, model.keep_prob: 1.0})).transpose()
         sig_t.append(sigma_out_fetch)
 
         start += batch_size
