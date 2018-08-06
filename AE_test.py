@@ -72,18 +72,20 @@ def get_projects_by_name(name):
 # ======= #
 
 # create project
-TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_x.xlsx'
-TEST_SET = '/Users/alex/Desktop/roar/test/dte_x.xlsx'
+# TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_x.xlsx'
+# TEST_SET = '/Users/alex/Desktop/roar/test/dte_x.xlsx'
+TRAIN_SET = '/Users/yihewang/Desktop/test/dtr_x.xlsx'
+TEST_SET = '/Users/yihewang/Desktop/test/dte_x.xlsx'
 
-project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_x2')
+project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_x4')
 project_autopilot.set_target(target='0', mode=dr.AUTOPILOT_MODE.QUICK, worker_count=4)
 models = project_autopilot.get_models()
 
-blue_prints = project_autopilot.get_blueprints()
-blue_prints
+# blue_prints = project_autopilot.get_blueprints()
+# blue_prints
 
 # prediction
-projects = get_projects_by_name('AE_x2')
+projects = get_projects_by_name('AE_x3')
 project_autopilot = projects[0]
 dataset = project_autopilot.upload_dataset(TEST_SET)
 models = project_autopilot.get_models()
@@ -92,8 +94,10 @@ predictions = predict_job.get_result_when_complete()
 
 MSE_X = np.sum((np.array(predictions.iloc[:, 0]) - x_val_out)**2)/n_val
 MSE_X
-# 0.11836186431663784
-# 0.08560085181747094
+# z20 mu, sigma: 0.11836186431663784
+# z20 x: 0.08560085181747094
+# z100 x: 0.067980258029508925
+# z100 mu: 0.087020828921637122
 
 # ======= #
 # Model z #
@@ -101,15 +105,17 @@ MSE_X
 
 # create project
 
-TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_z.xlsx'
-TEST_SET = '/Users/alex/Desktop/roar/test/dte_z.xlsx'
+# TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_z.xlsx'
+# TEST_SET = '/Users/alex/Desktop/roar/test/dte_z.xlsx'
+TRAIN_SET = '/Users/yihewang/Desktop/test/dtr_z.xlsx'
+TEST_SET = '/Users/yihewang/Desktop/test/dte_z.xlsx'
 
-project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_z2')
+project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_z4')
 project_autopilot.set_target(target='0', mode=dr.AUTOPILOT_MODE.QUICK, worker_count=4)
 models = project_autopilot.get_models()
 
 # prediction
-projects = get_projects_by_name('AE_z2')
+projects = get_projects_by_name('AE_z4')
 project_autopilot = projects[0]
 dataset = project_autopilot.upload_dataset(TEST_SET)
 models = project_autopilot.get_models()
@@ -118,8 +124,10 @@ predictions = predict_job.get_result_when_complete()
 
 MSE_Z = np.sum((np.array(predictions.iloc[:, 0]) - x_val_out)**2)/n_val
 MSE_Z
-# 0.5925748682059658
-# 2.206509717731684
+# z20 mu, sigma: 0.5925748682059658
+# z20 x: 2.206509717731684
+# z100 x: 1.8927718687551442
+# z100 mu: 5.7830173627389607
 
 # ========== #
 # Sigma mean #
@@ -149,15 +157,17 @@ AVE_garch_sigma
 
 # create project
 
-TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_xhat.xlsx'
-TEST_SET = '/Users/alex/Desktop/roar/test/dte_xhat.xlsx'
+# TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_xhat.xlsx'
+# TEST_SET = '/Users/alex/Desktop/roar/test/dte_xhat.xlsx'
+TRAIN_SET = '/Users/yihewang/Desktop/test/dtr_xhat.xlsx'
+TEST_SET = '/Users/yihewang/Desktop/test/dte_xhat.xlsx'
 
-project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_xhat2')
+project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_xhat4')
 project_autopilot.set_target(target='0', mode=dr.AUTOPILOT_MODE.QUICK, worker_count=4)
 models = project_autopilot.get_models()
 
 # prediction
-projects = get_projects_by_name('AE_xhat2')
+projects = get_projects_by_name('AE_xhat4')
 project_autopilot = projects[0]
 dataset = project_autopilot.upload_dataset(TEST_SET)
 models = project_autopilot.get_models()
@@ -167,5 +177,7 @@ predictions = predict_job.get_result_when_complete()
 MSE_xhat = np.sum((np.array(predictions.iloc[:, 0]) - x_val[:, -1])**2)/n_val
 MSE_xhat
 
-# 3.286238315620312
-# 0.5094349677079075
+# z20 mu, sigma: 3.286238315620312
+# z20 x predict xhat: 0.5094349677079075
+# z100 x: 0.90815494610646186
+# z100 mu: 1.2160574210404438

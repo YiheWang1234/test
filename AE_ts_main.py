@@ -24,10 +24,10 @@ config['max_grad_norm'] = 5  # maximum gradient norm during training
 config['batch_size'] = batch_size = 64
 config['learning_rate'] = .005
 config['crd'] = 1  # Hyperparameter for future generalization
-config['num_l'] = 20  # number of units in the latent space
+config['num_l'] = 100  # number of units in the latent space
 
 plot_every = 100  # after _plot_every_ GD steps, there's console output
-max_iterations = 10000  # maximum number of iterations
+max_iterations = 1000  # maximum number of iterations
 dropout = 0.8  # Dropout rate
 """Load the data"""
 X_train, X_val, y_train, y_val = open_data('./UCR_TS_Archive_2015')
@@ -90,6 +90,7 @@ if True:
             print("At %6s / %6s train (%5.3f, %5.3f, %5.3f), val (%5.3f, %5.3f,%5.3f) in order (total, seq, lat)" % (
             i, max_iterations, loss_train, loss_train_seq, lost_train_lat, loss_val, loss_val_seq, lost_val_lat))
             step += 1
+
 if True:
     ##Extract the latent space coordinates of the validation set
     start = 0
@@ -117,9 +118,9 @@ if True:
 
     label = y_val[:start]
 
-plot_z_run(z_run, label)
-plot_data(x_out, y_val[0:960])
-plot_data(sigma_out, y_val[0:960])
+#plot_z_run(z_run, label)
+#plot_data(x_out, y_val[0:960])
+#plot_data(sigma_out, y_val[0:960])
 
 
 
