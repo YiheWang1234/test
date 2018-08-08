@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import datarobot as dr
 
-data = np.load('output_rec_z.npz')
+data = np.load('output_rec_z3.npz')
 
 z_train = data['z_train']
 z_test = data['z_test']
@@ -10,8 +10,8 @@ z_test = data['z_test']
 n_train, pz = z_train.shape
 n_test, _ = z_test.shape
 
-x_train = data['x_train'][0:n_train, :]
-x_test = data['x_test'][0:n_test, :]
+x_train = data['x_train'][0:n_train, 10:]
+x_test = data['x_test'][0:n_test, 10:]
 x_train_out = data['x_train_out'][0:n_train]
 x_test_out = data['x_test_out'][0:n_test]
 
@@ -58,21 +58,49 @@ def get_projects_by_name(name):
 TRAIN_SET = '/Users/alex/Desktop/roar/test/dtr_x_re.xlsx'
 TEST_SET = '/Users/alex/Desktop/roar/test/dte_x_re.xlsx'
 
-project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_x_re')
+project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_x_re10')
 project_autopilot.set_target(target='0', mode=dr.AUTOPILOT_MODE.QUICK, worker_count=4)
 models = project_autopilot.get_models()
 
 # prediction
-projects = get_projects_by_name('AE_x_re')
+projects = get_projects_by_name('AE_x_re10')
 project_autopilot = projects[0]
 dataset = project_autopilot.upload_dataset(TEST_SET)
 models = project_autopilot.get_models()
 predict_job = models[0].request_predictions(dataset.id)
+print(models[0])
 predictions = predict_job.get_result_when_complete()
 
 MSE_X = np.sum((np.array(predictions.iloc[:, 0]) - x_test_out)**2)/n_test
 MSE_X
+# with first 10: 0.19449225981392265
+# without first 10: 0.18615741310322917
+# 10000 epoch: 0.2184233473440311
 
+# ============= #
+# Residual data #
+# ============= #
+
+test_residual = np.array(predictions.iloc[:, 0]) - x_test_out
+projects = get_projects_by_name('AE_x_re')
+project_autopilot = projects[0]
+dataset = project_autopilot.upload_dataset(TRAIN_SET)
+models = project_autopilot.get_models()
+predict_job = models[0].request_predictions(dataset.id)
+predictions = predict_job.get_result_when_complete()
+train_residual = np.array(predictions.iloc[:, 0]) - x_train_out
+
+residual_train_z = np.concatenate((train_residual.reshape((n_train, 1)),
+                                   z_train), axis=1)
+
+residual_test_z = np.concatenate((test_residual.reshape((n_test, 1)),
+                                  z_test), axis=1)
+
+rtr_z = pd.DataFrame(residual_train_z)
+rte_z = pd.DataFrame(residual_test_z)
+
+rtr_z.to_excel('rtr_z.xlsx', index=False)
+rte_z.to_excel('rte_z.xlsx', index=False)
 
 # ======= #
 # Model z #
@@ -93,8 +121,39 @@ project_autopilot = projects[0]
 dataset = project_autopilot.upload_dataset(TEST_SET)
 models = project_autopilot.get_models()
 predict_job = models[0].request_predictions(dataset.id)
+print(models[0])
 predictions = predict_job.get_result_when_complete()
 
 MSE_Z = np.sum((np.array(predictions.iloc[:, 0]) - x_test_out)**2)/n_test
 MSE_Z
+# 0.5540405214213027
+# 2.0267783581693655
+# 10000 epoch: 0.5670585780308599
 
+# ================ #
+# residual Model z #
+# ================ #
+
+# create project
+TRAIN_SET = '/Users/alex/Desktop/roar/test/rtr_z.xlsx'
+TEST_SET = '/Users/alex/Desktop/roar/test/rte_z.xlsx'
+
+project_autopilot = dr.Project.create(TRAIN_SET, project_name='AE_z_residual')
+project_autopilot.set_target(target='0', mode=dr.AUTOPILOT_MODE.QUICK, worker_count=4)
+models = project_autopilot.get_models()
+
+# prediction
+projects = get_projects_by_name('AE_z_residual')
+project_autopilot = projects[0]
+dataset = project_autopilot.upload_dataset(TEST_SET)
+models = project_autopilot.get_models()
+predict_job = models[0].request_predictions(dataset.id)
+print(models[0])
+predictions = predict_job.get_result_when_complete()
+
+new_MSE = np.sum((np.array(predictions.iloc[:, 0]) + test_residual)**2)/n_test
+new_MSE
+
+# with first 10: 0.199
+# without first 10: 0.18674056419626256
+# 10000 epoch: 0.23460866458705085

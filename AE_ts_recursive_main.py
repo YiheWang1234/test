@@ -30,12 +30,15 @@ config['num_l'] = 1  # number of units in the latent space
 lag = 10
 
 plot_every = 10  # after _plot_every_ GD steps, there's console output
-max_iterations = 10  # maximum number of iterations
+max_iterations = 10000  # maximum number of iterations
 dropout = 0.8  # Dropout rate
 """Load the data"""
 X_train1, X_val1, y_train1, y_val1 = open_data('./UCR_TS_Archive_2015')
 X_train1, X_train_out = X_train1[:, :-1], X_train1[:, -1]
 X_val1, X_val_out = X_val1[:, :-1], X_val1[:, -1]
+
+X_train1 = X_train1[:, 110:]
+X_val1 = X_val1[:, 110:]
 
 N = X_train1.shape[0]
 Nval = X_val1.shape[0]
@@ -157,7 +160,7 @@ for j in range(D1 - D):
     sess.close()
 
 
-np.savez('output_rec_z', z_train=z_train, z_test=z_test,
+np.savez('output_rec_z3', z_train=z_train, z_test=z_test,
          x_train=X_train1, x_test=X_val1,
          x_train_out=X_train_out, x_test_out=X_val_out,
          )
