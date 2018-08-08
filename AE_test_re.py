@@ -4,16 +4,16 @@ import datarobot as dr
 
 data = np.load('output_rec_z.npz')
 
-z_train=data['z_train']
-z_test=data['z_test']
+z_train = data['z_train']
+z_test = data['z_test']
 
 n_train, pz = z_train.shape
 n_test, _ = z_test.shape
 
-x_train=data['X_train1'][0:n_train, :]
-x_test=data['X_val1'][0:n_val, :]
-x_train_out=data['X_train_out'][0:n_train]
-x_test_out=data['X_val_out'][0:n_val]
+x_train = data['x_train'][0:n_train, :]
+x_test = data['x_test'][0:n_test, :]
+x_train_out = data['x_train_out'][0:n_train]
+x_test_out = data['x_test_out'][0:n_test]
 
 data_train_x = np.concatenate((x_train_out.reshape((n_train, 1)),
                                x_train), axis=1)
